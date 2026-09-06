@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/match.gd" id="1"]
+
+[sub_resource type="StyleBoxFlat" id="PitchBg"]
+bg_color = Color(0.086275, 0.235294, 0.14902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 20.0
+content_margin_top = 24.0
+content_margin_right = 20.0
+content_margin_bottom = 24.0
 
 [node name="Match" type="Control"]
 layout_mode = 3
@@ -18,10 +29,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
+theme_override_constants/margin_left = 28
 theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 28
 
 [node name="VBox" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
@@ -30,10 +41,14 @@ theme_override_constants/separation = 20
 [node name="MinuteLabel" type="Label" parent="Margin/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 26
 text = "0. dakika"
 
-[node name="DescriptionLabel" type="Label" parent="Margin/VBox"]
+[node name="PitchPanel" type="PanelContainer" parent="Margin/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("PitchBg")
+
+[node name="DescriptionLabel" type="Label" parent="Margin/VBox/PitchPanel"]
 unique_name_in_owner = true
 layout_mode = 2
 autowrap_mode = 2
@@ -47,13 +62,15 @@ theme_override_constants/separation = 20
 [node name="DecisionTrueButton" type="Button" parent="Margin/VBox/DecisionBox"]
 unique_name_in_owner = true
 layout_mode = 2
-custom_minimum_size = Vector2(200, 56)
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 56)
 text = "Karar A"
 
 [node name="DecisionFalseButton" type="Button" parent="Margin/VBox/DecisionBox"]
 unique_name_in_owner = true
 layout_mode = 2
-custom_minimum_size = Vector2(200, 56)
+size_flags_horizontal = 3
+custom_minimum_size = Vector2(0, 56)
 text = "Karar B"
 
 [node name="ResultLabel" type="Label" parent="Margin/VBox"]
@@ -78,28 +95,78 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -220.0
-offset_top = -100.0
-offset_right = 220.0
-offset_bottom = 100.0
+offset_left = -240.0
+offset_top = -170.0
+offset_right = 240.0
+offset_bottom = 170.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBox" type="VBoxContainer" parent="VarPanel"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 14
 
 [node name="Title" type="Label" parent="VarPanel/VBox"]
 layout_mode = 2
 horizontal_alignment = 1
+theme_override_colors/font_color = Color(0.913725, 0.270588, 0.376471, 1)
 theme_override_font_sizes/font_size = 22
 text = "VAR İNCELEMESİ"
 
-[node name="VarLabel" type="Label" parent="VarPanel/VBox"]
+[node name="VarStepLabel" type="Label" parent="VarPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+text = "ADIM 1/4"
+
+[node name="VarInfoLabel" type="Label" parent="VarPanel/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
 autowrap_mode = 2
+custom_minimum_size = Vector2(0, 70)
 text = "..."
+
+[node name="VarSignalButton" type="Button" parent="VarPanel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+text = "İncelemeye Git"
+
+[node name="VarScrubSlider" type="HSlider" parent="VarPanel/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+max_value = 100.0
+step = 1.0
+
+[node name="VarScrubContinue" type="Button" parent="VarPanel/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+text = "Devam Et"
+
+[node name="VarLineButton" type="Button" parent="VarPanel/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+text = "Çizgiyi Çiz"
+
+[node name="VarAngleButton" type="Button" parent="VarPanel/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+text = "Farklı Açı Dene"
+
+[node name="VarAngleContinue" type="Button" parent="VarPanel/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+text = "Karara Geç"
 
 [node name="ButtonRow" type="HBoxContainer" parent="VarPanel/VBox"]
 layout_mode = 2
@@ -108,11 +175,13 @@ theme_override_constants/separation = 16
 
 [node name="VarChangeButton" type="Button" parent="VarPanel/VBox/ButtonRow"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Kararı Değiştir"
 
 [node name="VarKeepButton" type="Button" parent="VarPanel/VBox/ButtonRow"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 text = "Kararı Koru"
 

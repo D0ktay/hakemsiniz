@@ -1,6 +1,45 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/hub.gd" id="1"]
+
+[sub_resource type="StyleBoxFlat" id="FillPublic"]
+bg_color = Color(0.945098, 0.647059, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="FillFederation"]
+bg_color = Color(0.309804, 0.564706, 0.976471, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="FillEnergy"]
+bg_color = Color(0.290196, 0.784314, 0.478431, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="FillSuspicion"]
+bg_color = Color(0.913725, 0.270588, 0.376471, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StatsPanelBg"]
+bg_color = Color(0.070588, 0.070588, 0.109804, 0.6)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 16.0
+content_margin_top = 14.0
+content_margin_right = 16.0
+content_margin_bottom = 14.0
 
 [node name="Hub" type="Control"]
 layout_mode = 3
@@ -18,10 +57,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
+theme_override_constants/margin_left = 28
 theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 28
 
 [node name="VBox" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
@@ -34,59 +73,74 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 30
 text = "Hafta 1"
 
 [node name="LeagueLabel" type="Label" parent="Margin/VBox/HeaderRow"]
 unique_name_in_owner = true
 layout_mode = 2
 horizontal_alignment = 2
+theme_override_colors/font_color = Color(0.945098, 0.647059, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Aday Hakem"
 
-[node name="StatsGrid" type="GridContainer" parent="Margin/VBox"]
+[node name="StatsPanel" type="PanelContainer" parent="Margin/VBox"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StatsPanelBg")
+
+[node name="StatsGrid" type="GridContainer" parent="Margin/VBox/StatsPanel"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 10
 columns = 2
 
-[node name="Label1" type="Label" parent="Margin/VBox/StatsGrid"]
+[node name="Label1" type="Label" parent="Margin/VBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "Halk İlişkisi"
 
-[node name="PublicBar" type="ProgressBar" parent="Margin/VBox/StatsGrid"]
+[node name="PublicBar" type="ProgressBar" parent="Margin/VBox/StatsPanel/StatsGrid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 0)
+custom_minimum_size = Vector2(220, 18)
 layout_mode = 2
+theme_override_styles/fill = SubResource("FillPublic")
 value = 50.0
+show_percentage = false
 
-[node name="Label2" type="Label" parent="Margin/VBox/StatsGrid"]
+[node name="Label2" type="Label" parent="Margin/VBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "Federasyon İlişkisi"
 
-[node name="FederationBar" type="ProgressBar" parent="Margin/VBox/StatsGrid"]
+[node name="FederationBar" type="ProgressBar" parent="Margin/VBox/StatsPanel/StatsGrid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 0)
+custom_minimum_size = Vector2(220, 18)
 layout_mode = 2
+theme_override_styles/fill = SubResource("FillFederation")
 value = 50.0
+show_percentage = false
 
-[node name="Label3" type="Label" parent="Margin/VBox/StatsGrid"]
+[node name="Label3" type="Label" parent="Margin/VBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "Enerji"
 
-[node name="EnergyBar" type="ProgressBar" parent="Margin/VBox/StatsGrid"]
+[node name="EnergyBar" type="ProgressBar" parent="Margin/VBox/StatsPanel/StatsGrid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 0)
+custom_minimum_size = Vector2(220, 18)
 layout_mode = 2
+theme_override_styles/fill = SubResource("FillEnergy")
 value = 100.0
+show_percentage = false
 
-[node name="Label4" type="Label" parent="Margin/VBox/StatsGrid"]
+[node name="Label4" type="Label" parent="Margin/VBox/StatsPanel/StatsGrid"]
 layout_mode = 2
 text = "Şüphe"
 
-[node name="SuspicionBar" type="ProgressBar" parent="Margin/VBox/StatsGrid"]
+[node name="SuspicionBar" type="ProgressBar" parent="Margin/VBox/StatsPanel/StatsGrid"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(240, 0)
+custom_minimum_size = Vector2(220, 18)
 layout_mode = 2
+theme_override_styles/fill = SubResource("FillSuspicion")
 value = 0.0
+show_percentage = false
 
 [node name="MoneyRow" type="HBoxContainer" parent="Margin/VBox"]
 layout_mode = 2
@@ -95,29 +149,36 @@ theme_override_constants/separation = 24
 [node name="CleanMoneyLabel" type="Label" parent="Margin/VBox/MoneyRow"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.290196, 0.784314, 0.478431, 1)
 text = "Temiz: 5000 TL"
 
 [node name="DirtyMoneyLabel" type="Label" parent="Margin/VBox/MoneyRow"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.270588, 0.376471, 1)
 text = "Kirli: 0 TL"
 
 [node name="InvestigationLabel" type="Label" parent="Margin/VBox"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-modulate = Color(1, 0.3, 0.3, 1)
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
 text = "⚠ SORUŞTURMA ALTINDASIN"
 
 [node name="SummaryLabel" type="Label" parent="Margin/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
 autowrap_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.76, 1)
 text = "Yeni bir hakemlik kariyerine hoş geldin."
+
+[node name="Spacer" type="Control" parent="Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="NavRow" type="HBoxContainer" parent="Margin/VBox"]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 10
 
 [node name="TrainingButton" type="Button" parent="Margin/VBox/NavRow"]
 unique_name_in_owner = true
@@ -146,5 +207,6 @@ text = "Kariyer"
 [node name="PlayButton" type="Button" parent="Margin/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 58)
+theme_override_font_sizes/font_size = 20
 text = "Maçı Oyna"

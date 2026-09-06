@@ -28,8 +28,15 @@ EconomySystem="*res://scripts/autoload/economy_system.gd"
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/size/viewport_width=540
+window/size/viewport_height=960
+
+[gui]
+
+theme/custom="res://theme/main_theme.tres"
 
 [rendering]
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.101961, 0.101961, 0.180392, 1)
