@@ -102,11 +102,46 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Kirli: 0 TL"
 
+[node name="InvestigationLabel" type="Label" parent="Margin/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+modulate = Color(1, 0.3, 0.3, 1)
+text = "⚠ SORUŞTURMA ALTINDASIN"
+
 [node name="SummaryLabel" type="Label" parent="Margin/VBox"]
 unique_name_in_owner = true
 layout_mode = 2
 autowrap_mode = 2
 text = "Yeni bir hakemlik kariyerine hoş geldin."
+
+[node name="NavRow" type="HBoxContainer" parent="Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TrainingButton" type="Button" parent="Margin/VBox/NavRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Antrenman"
+
+[node name="SocialButton" type="Button" parent="Margin/VBox/NavRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sosyal"
+
+[node name="ShopButton" type="Button" parent="Margin/VBox/NavRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Mağaza"
+
+[node name="CareerButton" type="Button" parent="Margin/VBox/NavRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Kariyer"
 
 [node name="PlayButton" type="Button" parent="Margin/VBox"]
 unique_name_in_owner = true

@@ -9,12 +9,21 @@ extends Control
 @onready var clean_money_label: Label = %CleanMoneyLabel
 @onready var dirty_money_label: Label = %DirtyMoneyLabel
 @onready var summary_label: Label = %SummaryLabel
+@onready var investigation_label: Label = %InvestigationLabel
 @onready var play_button: Button = %PlayButton
+@onready var training_button: Button = %TrainingButton
+@onready var social_button: Button = %SocialButton
+@onready var shop_button: Button = %ShopButton
+@onready var career_button: Button = %CareerButton
 
 func _ready() -> void:
 	GameManager.stats_changed.connect(_refresh)
 	GameManager.game_over.connect(_on_game_over)
 	play_button.pressed.connect(_on_play_pressed)
+	training_button.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/training.tscn"))
+	social_button.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/social.tscn"))
+	shop_button.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/shop.tscn"))
+	career_button.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/career.tscn"))
 	_show_summary()
 	_refresh()
 
@@ -30,8 +39,17 @@ func _refresh() -> void:
 	dirty_money_label.text = "Kirli: %d TL" % s.dirty_money
 	play_button.disabled = s.energy < 15.0
 	play_button.text = "Maçı Oyna" if s.energy >= 15.0 else "Dinlenmen Lazım"
+	investigation_label.visible = s.under_investigation
+	if s.under_investigation:
+		investigation_label.text = "⚠ SORUŞTURMA ALTINDASIN (Kanıt: %.0f)" % s.evidence_score
 
 func _show_summary() -> void:
+	var event_msg: String = GameManager.last_event_message
+	if not event_msg.is_empty():
+		summary_label.text = event_msg
+		GameManager.last_event_message = ""
+		return
+
 	var sum := GameManager.last_match_summary
 	if sum.is_empty():
 		summary_label.text = "Yeni bir hakemlik kariyerine hoş geldin."
@@ -44,5 +62,4 @@ func _on_play_pressed() -> void:
 	GameManager.start_assignment()
 
 func _on_game_over(reason: String) -> void:
-	summary_label.text = "KARİYER SONA ERDİ: %s" % reason
-	play_button.disabled = true
+	pass # ending.tscn ekranı devralır

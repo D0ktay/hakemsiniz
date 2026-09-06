@@ -20,6 +20,9 @@ run/main_scene="res://scenes/hub.tscn"
 GameManager="*res://scripts/autoload/game_manager.gd"
 OfferSystem="*res://scripts/autoload/offer_system.gd"
 MatchManager="*res://scripts/autoload/match_manager.gd"
+ThreatSystem="*res://scripts/autoload/threat_system.gd"
+CareerSystem="*res://scripts/autoload/career_system.gd"
+EconomySystem="*res://scripts/autoload/economy_system.gd"
 
 [display]
 
