@@ -1,3 +1,16 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Export artifacts and secrets (keystore paths/passwords live here)
+export_presets.cfg
+*.pck
+*.apk
+*.aab
+*.ipa
+/builds/
+/export/
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db
