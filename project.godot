@@ -13,6 +13,13 @@ config_version=5
 config/name="Hakemsiniz"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
+run/main_scene="res://scenes/hub.tscn"
+
+[autoload]
+
+GameManager="*res://scripts/autoload/game_manager.gd"
+OfferSystem="*res://scripts/autoload/offer_system.gd"
+MatchManager="*res://scripts/autoload/match_manager.gd"
 
 [display]
 
