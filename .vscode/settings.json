@@ -1,0 +1,17 @@
+{
+    "godotTools.editorPath.godot4": "C:\\Users\\oktay\\Downloads\\Godot_v4.7.2-stable_win64.exe\\Godot_v4.7.2-stable_win64.exe",
+    "godotTools.lsp.serverPort": 6005,
+    "godotTools.lsp.headless": false,
+    "files.associations": {
+        "*.gd": "gdscript",
+        "*.tscn": "gdresource",
+        "*.tres": "gdresource",
+        "*.godot": "gdresource"
+    },
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "[gdscript]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": false
+    }
+}
